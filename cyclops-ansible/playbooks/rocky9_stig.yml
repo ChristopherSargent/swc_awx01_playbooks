@@ -1,5 +1,0 @@
-- name: Run Rocky Linux 9 STIG hardening
-  hosts: all
-  become: true
-  roles:
-    - rocky9_stig

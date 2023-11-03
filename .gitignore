@@ -1,2 +1,4 @@
 # ignore lock
 *.lock
+# cylcops
+cyclops-ansible
