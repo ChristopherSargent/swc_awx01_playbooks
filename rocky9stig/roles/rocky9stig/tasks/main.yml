@@ -1,0 +1,22 @@
+---
+- name: Install EPEL repo
+  ansible.builtin.dnf:
+    name: epel-release
+    state: present
+
+- name: Load vars file
+  include_vars: compliance_as_code.yml
+
+- name: Install compliance_as_code_packages
+  ansible.builtin.package:
+    name: "{{ compliance_as_code_packages }}"
+    state: present
+
+- name: Copy rl9-playbook-stig-lumen.yml Playbook
+  copy: src=rl9-playbook-stig-lumen.yml  dest=/usr/share/scap-security-guide/ansible/ mode=0644
+
+- name: Run rl9-playbook-stig-lumen.yml playbook
+  shell:
+    cmd: ansible-playbook -i "localhost," -c local /usr/share/scap-security-guide/ansible/rl9-playbook-stig-lumen.yml
+
+

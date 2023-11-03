@@ -1,0 +1,7 @@
+---
+  - name: Run Rocky Linux 9 STIG hardening
+    hosts: all
+    become_user: root
+    tasks:
+      - include_role:
+          name: rocky9_stig

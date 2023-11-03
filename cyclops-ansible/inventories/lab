@@ -1,0 +1,2 @@
+[rhel8]
+rock902.cas.local ansible_host=172.18.0.200
