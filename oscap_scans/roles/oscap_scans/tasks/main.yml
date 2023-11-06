@@ -1,0 +1,28 @@
+---
+- name: Load vars
+  include_vars: "oscap.yml"
+
+- name: Create oscap directory
+  shell: mkdir -p /home/oscap-reports
+
+- name: install openscap scanner
+  package:
+    name: "{{ item }}"
+    state: latest
+  with_items:
+  - openscap-scanner
+  - scap-security-guide
+
+- block:
+  - name: run openscap
+    command: oscap xccdf eval \
+      --profile {{ oscap_profile }} \
+      --results-arf /tmp/oscap-arf.xml \
+      --report /home/oscap-reports/oscap-report.html \
+      /usr/share/xml/scap/ssg/content/{{ oscap_policy }}.xml
+    ignore_errors: true
+
+- name: Rename report
+  shell: "cp /home/oscap-reports/oscap-report.html /home/oscap-reports/`uname -n`.oscap-report.$(date +'%Y%m%d%H%M').html"
+
+

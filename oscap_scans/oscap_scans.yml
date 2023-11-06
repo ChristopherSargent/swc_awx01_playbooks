@@ -1,0 +1,11 @@
+---
+# Playbook for Rocky Linux 9 OSCAP Scans
+# Christopher Sargent 11062023 
+
+- name: oscap_scans
+  become_user: root
+  hosts: all
+  tasks:
+    - include_role:
+        name: oscap_scans
+

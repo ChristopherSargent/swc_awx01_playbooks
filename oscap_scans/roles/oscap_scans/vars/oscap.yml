@@ -1,0 +1,5 @@
+---
+# Oscap profile and policy for DISA STIG for Rocky Linux 9
+oscap_profile: stig
+oscap_policy: ssg-rl9-ds
+
