@@ -4,4 +4,3 @@ compliance_as_code_packages:
   - scap-security-guide
   - yum-utils
   - openscap-utils
-  - ansible  

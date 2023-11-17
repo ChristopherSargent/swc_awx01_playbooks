@@ -93,7 +93,7 @@
     var_ssh_client_rekey_limit_size: !!str 512M
     var_ssh_client_rekey_limit_time: !!str 1h
     var_sshd_set_keepalive: !!str 0
-    sshd_idle_timeout_value: !!str 600
+#    sshd_idle_timeout_value: !!str 600
     var_sshd_disable_compression: !!str no
     var_rekey_limit_size: !!str 1G
     var_rekey_limit_time: !!str 1h
@@ -11946,7 +11946,6 @@
       - require_singleuser_auth
       - restrict_strategy
 
-# remove tmux
     - name: Ensure opensc is installed
       package:
         name: opensc
@@ -38373,9 +38372,6 @@
       - restrict_strategy
       - rsyslog_remote_loghost
 
-# removed sniffer 
-# removed firewalld
-
     - name: Ensure libreswan is installed
       package:
         name: libreswan
@@ -38817,7 +38813,6 @@
       - medium_severity
       - no_reboot_needed
       - restrict_strategy
-      ignore_errors: true
 
     - name: Ensure sticky bit is set
       file:
@@ -43512,6 +43507,7 @@
       - reboot_required
       - restrict_strategy
 
+
     - name: Gather the package facts
       package_facts:
         manager: auto
@@ -43523,6 +43519,7 @@
       - medium_severity
       - reboot_required
       - restrict_strategy
+
 
     - name: Update grub defaults and the bootloader menu
       command: /sbin/grubby --update-kernel=ALL --args="slub_debug={{ var_slub_debug_options
@@ -45917,7 +45914,6 @@
       - medium_severity
       - no_reboot_needed
       - restrict_strategy
-
 
     - name: Disable Compression Or Set Compression to delayed
       block:

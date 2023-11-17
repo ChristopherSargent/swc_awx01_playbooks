@@ -12,11 +12,15 @@
     name: "{{ compliance_as_code_packages }}"
     state: present
 
+- name: Install ansible package on version 7.2.0
+  ansible.builtin.pip:
+    name: ansible==7.2.0
+
 - name: Copy rl9-playbook-stig-lumen.yml Playbook
   copy: src=rl9-playbook-stig-lumen.yml  dest=/usr/share/scap-security-guide/ansible/ mode=0644
 
 - name: Run rl9-playbook-stig-lumen.yml playbook
   shell:
-    cmd: ansible-playbook -i "localhost," -c local /usr/share/scap-security-guide/ansible/rl9-playbook-stig-lumen.yml
+    cmd: /usr/local/bin/ansible-playbook -i "localhost," -c local /usr/share/scap-security-guide/ansible/rl9-playbook-stig-lumen.yml
 
 
