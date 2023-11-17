@@ -23,4 +23,8 @@
   shell:
     cmd: /usr/local/bin/ansible-playbook -i "localhost," -c local /usr/share/scap-security-guide/ansible/rl9-playbook-stig-lumen.yml
 
+- name: Uninstall ansible package on version 7.2.0
+  ansible.builtin.pip:
+    name: ansible==7.2.0
+    state: absent
 
