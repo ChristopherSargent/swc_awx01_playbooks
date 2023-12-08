@@ -13935,10 +13935,17 @@
         package_facts:
           manager: auto
 
+      - name: Stop service auditbeat
+        systemd:
+          name: auditbeat
+          enabled: 'yes'
+          state: stopped
+        ignore_errors: true
+
       - name: Enable service auditd
         systemd:
           name: auditd
-          enabled: 'yes'
+          enabled: 'no'
           state: started
           masked: 'no'
         when:
@@ -47496,3 +47503,15 @@
       - reboot_required
       - restrict_strategy
       - xwindows_runlevel_target
+
+# Lumen fix. Disable auditd in favor of auditbeat CAS 12082023
+
+    - name: Disable service auditd
+      shell: service auditd stop
+
+    - name: Start service auditbeat
+      systemd:
+        name: auditbeat
+        enabled: 'yes'
+        state: started
+      ignore_errors: true
